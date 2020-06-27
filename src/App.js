@@ -7,6 +7,15 @@ import { ReactComponent as CogIcon } from './icons/cog.svg';
 import { ReactComponent as ChevronIcon } from './icons/chevron.svg';
 import { ReactComponent as ArrowIcon } from './icons/arrow.svg';
 import { ReactComponent as BoltIcon } from './icons/bolt.svg';
+import { ReactComponent as CatIcon } from './icons/cat.svg';
+import { ReactComponent as DoveIcon } from './icons/dove.svg';
+import { ReactComponent as DragonIcon } from './icons/dragon.svg';
+import { ReactComponent as FishIcon } from './icons/fish.svg';
+import { ReactComponent as HorseIcon } from './icons/horse.svg';
+import { ReactComponent as KiwiBirdIcon } from './icons/kiwi-bird.svg';
+import { ReactComponent as OtterIcon } from './icons/otter.svg';
+import { ReactComponent as PawIcon } from './icons/paw.svg';
+import { ReactComponent as SpiderIcon } from './icons/spider.svg';
 
 import { CSSTransition } from "react-transition-group";
 
@@ -64,6 +73,12 @@ function DropdownMenu() {
                       goToMenu="settings" >
                       Settings
                   </DropdownItem>
+                  <DropdownItem
+                      leftIcon={<PawIcon />}
+                      rightIcon={<ChevronIcon />}
+                      goToMenu="animals">
+                      Animals
+                  </DropdownItem>
               </div>
 
           </CSSTransition>
@@ -72,17 +87,37 @@ function DropdownMenu() {
 
               <div className="menu">
                   <DropdownItem leftIcon={<ArrowIcon/>} goToMenu="main"/>
-                  <DropdownItem>Settings</DropdownItem>
-                  <DropdownItem>Settings</DropdownItem>
-                  <DropdownItem>Settings</DropdownItem>
-                  <DropdownItem>Settings</DropdownItem>
-                  <DropdownItem>Settings</DropdownItem>
-                  <DropdownItem>Settings</DropdownItem>
-                  <DropdownItem>Settings</DropdownItem>
-                  <DropdownItem>Settings</DropdownItem>
-                  <DropdownItem>Settings</DropdownItem>
+                  <DropdownItem><h3>Settings</h3></DropdownItem>
+                  <DropdownItem><h3>Settings</h3></DropdownItem>
+                  <DropdownItem><h3>Settings</h3></DropdownItem>
+                  <DropdownItem><h3>Settings</h3></DropdownItem>
+                  <DropdownItem><h3>Settings</h3></DropdownItem>
+                  <DropdownItem><h3>Settings</h3></DropdownItem>
+                  <DropdownItem><h3>Settings</h3></DropdownItem>
+                  <DropdownItem><h3>Settings</h3></DropdownItem>
               </div>
 
+          </CSSTransition>
+
+          <CSSTransition
+              in={activeMenu === 'animals'}
+              timeout={500}
+              classNames="menu-secondary"
+              unmountOnExit
+              onEnter={calcHeight}>
+              <div className="menu">
+                  <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
+                      <h1>Animals</h1>
+                  </DropdownItem>
+                  <DropdownItem leftIcon={<CatIcon />}><h3>Cat</h3></DropdownItem>
+                  <DropdownItem leftIcon={<DoveIcon />}><h3>Dove</h3></DropdownItem>
+                  <DropdownItem leftIcon={<DragonIcon />}><h3>Dragon</h3></DropdownItem>
+                  <DropdownItem leftIcon={<FishIcon />}><h3>Fish</h3></DropdownItem>
+                  <DropdownItem leftIcon={<HorseIcon />}><h3>Horse</h3></DropdownItem>
+                  <DropdownItem leftIcon={<KiwiBirdIcon />}><h3>Kiwi bird</h3></DropdownItem>
+                  <DropdownItem leftIcon={<OtterIcon />}><h3>Otter</h3></DropdownItem>
+                  <DropdownItem leftIcon={<SpiderIcon />}><h3>Spider</h3></DropdownItem>
+              </div>
           </CSSTransition>
       </div>
     );
