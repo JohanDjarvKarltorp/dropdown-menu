@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ReactComponent as BellIcon } from './icons/bell.svg';
 import { ReactComponent as MessengerIcon } from './icons/messenger.svg';
 import { ReactComponent as CaretIcon } from './icons/caret.svg';
@@ -20,7 +20,6 @@ function App() {
 
           <NavItem icon={<CaretIcon />}>
               <DropdownMenu/>
-
           </NavItem>
       </Navbar>
   );
@@ -29,6 +28,17 @@ function App() {
 function DropdownMenu() {
 
     const [activeMenu, setActiveMenu] = useState('main');
+    const [menuHeight, setMenuHeight] = useState(null);
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
+    }, []);
+
+    function calcHeight(el) {
+        const height = el.offsetHeight;
+        setMenuHeight(height);
+    }
 
     function DropdownItem(props) {
         return (
@@ -43,8 +53,8 @@ function DropdownMenu() {
     }
 
     return (
-      <div className="dropdown">
-          <CSSTransition in={activeMenu === 'main'} unmountOnExit timeout={500} classNames="menu-primary">
+      <div className="dropdown" style={{ height: menuHeight }} ref={dropdownRef}>
+          <CSSTransition in={activeMenu === 'main'} unmountOnExit timeout={500} classNames="menu-primary" onEnter={calcHeight}>
 
               <div className="menu">
                   <DropdownItem>My Profile</DropdownItem>
@@ -58,7 +68,7 @@ function DropdownMenu() {
 
           </CSSTransition>
 
-          <CSSTransition in={activeMenu === 'settings'} unmountOnExit timeout={500} classNames="menu-secondary">
+          <CSSTransition in={activeMenu === 'settings'} unmountOnExit timeout={500} classNames="menu-secondary" onEnter={calcHeight}>
 
               <div className="menu">
                   <DropdownItem leftIcon={<ArrowIcon/>} goToMenu="main"/>
