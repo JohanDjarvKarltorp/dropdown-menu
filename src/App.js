@@ -66,18 +66,19 @@ function DropdownMenu() {
           <CSSTransition in={activeMenu === 'main'} unmountOnExit timeout={500} classNames="menu-primary" onEnter={calcHeight}>
 
               <div className="menu">
-                  <DropdownItem>My Profile</DropdownItem>
+                  <DropdownItem><h3>My Profile</h3></DropdownItem>
+                  <hr/>
                   <DropdownItem
                       leftIcon={<CogIcon />}
                       rightIcon={<ChevronIcon />}
                       goToMenu="settings" >
-                      Settings
+                      <h3>Settings</h3>
                   </DropdownItem>
                   <DropdownItem
                       leftIcon={<PawIcon />}
                       rightIcon={<ChevronIcon />}
                       goToMenu="animals">
-                      Animals
+                      <h3>Animals</h3>
                   </DropdownItem>
               </div>
 
@@ -87,14 +88,14 @@ function DropdownMenu() {
 
               <div className="menu">
                   <DropdownItem leftIcon={<ArrowIcon/>} goToMenu="main"/>
-                  <DropdownItem><h3>Settings</h3></DropdownItem>
-                  <DropdownItem><h3>Settings</h3></DropdownItem>
-                  <DropdownItem><h3>Settings</h3></DropdownItem>
-                  <DropdownItem><h3>Settings</h3></DropdownItem>
-                  <DropdownItem><h3>Settings</h3></DropdownItem>
-                  <DropdownItem><h3>Settings</h3></DropdownItem>
-                  <DropdownItem><h3>Settings</h3></DropdownItem>
-                  <DropdownItem><h3>Settings</h3></DropdownItem>
+                  <DropdownItem leftIcon={<BoltIcon />}><h3>Settings</h3></DropdownItem>
+                  <DropdownItem leftIcon={<BoltIcon />}><h3>Settings</h3></DropdownItem>
+                  <DropdownItem leftIcon={<BoltIcon />}><h3>Settings</h3></DropdownItem>
+                  <DropdownItem leftIcon={<BoltIcon />}><h3>Settings</h3></DropdownItem>
+                  <DropdownItem leftIcon={<BoltIcon />}><h3>Settings</h3></DropdownItem>
+                  <DropdownItem leftIcon={<BoltIcon />}><h3>Settings</h3></DropdownItem>
+                  <DropdownItem leftIcon={<BoltIcon />}><h3>Settings</h3></DropdownItem>
+                  <DropdownItem leftIcon={<BoltIcon />}><h3>Settings</h3></DropdownItem>
               </div>
 
           </CSSTransition>

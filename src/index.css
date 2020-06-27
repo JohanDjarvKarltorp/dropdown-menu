@@ -19,7 +19,7 @@ code {
   --nav-size: 60px;
   --border: 1px solid #474a4d;
   --border-radius: 8px;
-  --speed: 500ms;
+  --speed: 300ms;
 
 }
 
@@ -98,12 +98,17 @@ a {
   display: flex;
   align-items: center;
   border-radius: var(--border-radius);
-  transition: background var(--speed);
+  transition: background calc(var(--speed) / 2);
   padding: 0.5rem;
 }
 
 .menu-item:hover {
   background-color: #525357;
+}
+
+.menu-item h1,
+.menu-item h3 {
+  padding-left: 1rem;
 }
 
 .icon-right {
@@ -112,6 +117,11 @@ a {
 
 .menu {
   width: 100%;
+}
+
+.menu hr {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .menu-primary-enter {
