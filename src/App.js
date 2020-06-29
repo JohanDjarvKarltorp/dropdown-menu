@@ -22,16 +22,50 @@ import { CSSTransition } from "react-transition-group";
 
 function App() {
   return (
-      <Navbar>
-          <NavItem icon={<PlusIcon />} />
-          <NavItem icon={<BellIcon />} />
-          <NavItem icon={<MessengerIcon />} />
+     <Body>
+          <Navbar>
+              <NavItem icon={<PlusIcon />} />
+              <NavItem icon={<BellIcon />} />
+              <NavItem icon={<MessengerIcon />} />
 
-          <NavItem icon={<CaretIcon />}>
-              <DropdownMenu/>
-          </NavItem>
-      </Navbar>
+              <NavItem icon={<CaretIcon />}>
+                  <DropdownMenu/>
+              </NavItem>
+          </Navbar>
+         <Header/>
+         <Main/>
+     </Body>
   );
+}
+
+function Body(props) {
+    return (
+        <div className="light"> {props.children} </div>
+    );
+
+}
+
+function Header(props) {
+    return (
+        <header>
+            <span className="logo">{<CatIcon/>}</span>
+            <h1>Front-End Web Development,<br/>Fired Up</h1>
+            <p>Flutter, Firebase, JavaScript, Node.js</p>
+        </header>
+    );
+
+}
+
+function Main() {
+    return (
+        <main>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non curabitur gravida arcu ac tortor dignissim. Diam sit amet nisl suscipit adipiscing bibendum est. Tincidunt tortor aliquam nulla facilisi cras. Quis hendrerit dolor magna eget est lorem ipsum dolor. Gravida dictum fusce ut placerat orci. Vitae sapien pellentesque habitant morbi. Augue ut lectus arcu bibendum at varius vel pharetra. Et malesuada fames ac turpis. Tortor aliquam nulla facilisi cras fermentum odio eu. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. Est velit egestas dui id ornare arcu. Proin fermentum leo vel orci porta non pulvinar. Posuere urna nec tincidunt praesent. Sit amet cursus sit amet dictum sit amet. Odio ut enim blandit volutpat maecenas volutpat blandit. Sit amet aliquam id diam maecenas.</p>
+            <p>At consectetur lorem donec massa sapien faucibus et molestie ac. Consectetur purus ut faucibus pulvinar elementum integer enim neque. Nunc sed augue lacus viverra vitae congue eu consequat. Neque sodales ut etiam sit amet nisl purus in mollis. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Faucibus ornare suspendisse sed nisi. Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Cras pulvinar mattis nunc sed. Senectus et netus et malesuada fames ac turpis egestas integer. Elementum tempus egestas sed sed risus pretium. Mauris a diam maecenas sed enim ut. Nisl vel pretium lectus quam id leo. Iaculis at erat pellentesque adipiscing commodo elit at. Nunc non blandit massa enim nec. Ullamcorper velit sed ullamcorper morbi tincidunt. Mi ipsum faucibus vitae aliquet nec ullamcorper. Mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a.</p>
+            <p>Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper. Eu non diam phasellus vestibulum lorem. Est placerat in egestas erat imperdiet. Adipiscing tristique risus nec feugiat. Posuere morbi leo urna molestie at elementum eu. Eget est lorem ipsum dolor sit amet consectetur adipiscing elit. Orci dapibus ultrices in iaculis nunc sed. Eu lobortis elementum nibh tellus. Faucibus turpis in eu mi bibendum. Libero nunc consequat interdum varius sit amet mattis. Pellentesque elit eget gravida cum sociis natoque penatibus et magnis. In fermentum et sollicitudin ac orci phasellus egestas. Elementum eu facilisis sed odio. Hendrerit gravida rutrum quisque non tellus. Vitae ultricies leo integer malesuada nunc vel risus. Sapien faucibus et molestie ac feugiat sed lectus vestibulum. Tincidunt augue interdum velit euismod in pellentesque massa placerat. Velit egestas dui id ornare arcu. Id donec ultrices tincidunt arcu non sodales neque sodales ut.</p>
+            <p>Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sed elementum tempus egestas sed sed. Lectus magna fringilla urna porttitor rhoncus dolor. Porttitor eget dolor morbi non arcu risus quis varius quam. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet proin. Montes nascetur ridiculus mus mauris. Blandit massa enim nec dui nunc mattis enim ut tellus. Sed adipiscing diam donec adipiscing tristique risus nec. Justo nec ultrices dui sapien eget mi proin. Nam libero justo laoreet sit. Tristique magna sit amet purus. Venenatis a condimentum vitae sapien pellentesque. Eleifend quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Faucibus et molestie ac feugiat sed lectus vestibulum mattis.</p>
+            <p>Et malesuada fames ac turpis egestas sed tempus. Duis at tellus at urna condimentum mattis pellentesque. Quis lectus nulla at volutpat. Auctor urna nunc id cursus. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames. Vulputate enim nulla aliquet porttitor lacus luctus accumsan. Sapien faucibus et molestie ac feugiat sed lectus. Fringilla ut morbi tincidunt augue interdum velit. Dui ut ornare lectus sit amet est placerat. Facilisi morbi tempus iaculis urna. Parturient montes nascetur ridiculus mus mauris vitae. Morbi tincidunt ornare massa eget. Amet massa vitae tortor condimentum. Diam vel quam elementum pulvinar etiam. Convallis tellus id interdum velit laoreet id donec ultrices. Sit amet mattis vulputate enim nulla aliquet porttitor lacus luctus. Adipiscing enim eu turpis egestas. Et netus et malesuada fames ac turpis egestas maecenas. Urna cursus eget nunc scelerisque viverra mauris in aliquam.</p>
+        </main>
+    );
 }
 
 function DropdownMenu() {
