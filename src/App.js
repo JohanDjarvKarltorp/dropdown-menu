@@ -40,8 +40,20 @@ function App() {
 }
 
 function Body(props) {
+    const theme = localStorage.getItem('theme');
+    const isSolar = localStorage.getItem('isSolar');
+    let className = [];
+
+    if (theme) {
+        className.push(theme);
+        isSolar && className.push('solar');
+
+    } else {
+        className.push('dark');
+        localStorage.setItem('theme', 'dark');
+    }
     return (
-        <div id="body" className="dark"> {props.children} </div>
+        <div id="body" className={className.join(" ")}> {props.children} </div>
     );
 
 }
@@ -183,8 +195,8 @@ function DropdownMenu() {
               onEnter={calcHeight}>
               <div className="menu">
                   <DropdownItem states={[{value: "settings", setFunction: setActiveMenu}]} leftIcon={<ArrowIcon />}/>
-                  <DropdownItem leftIcon={<span id="light" className="icon-theme"/>} states={[{value: "light", setFunction: (value) => document.getElementById('body').classList.replace('dark', value)}]}><h3>Light</h3></DropdownItem>
-                  <DropdownItem leftIcon={<span id="dark" className="icon-theme"/>} states={[{value: "dark", setFunction: (value) => document.getElementById('body').classList.replace('light', value)}]}><h3>Dark</h3></DropdownItem>
+                  <DropdownItem leftIcon={<span id="light" className="icon-theme"/>} states={[{value: "light", setFunction: (value) => document.getElementById('body').classList.replace('dark', value) && localStorage.setItem('theme', 'light')}]}><h3>Light</h3></DropdownItem>
+                  <DropdownItem leftIcon={<span id="dark" className="icon-theme"/>} states={[{value: "dark", setFunction: (value) => document.getElementById('body').classList.replace('light', value) && localStorage.setItem('theme', 'dark')}]}><h3>Dark</h3></DropdownItem>
                   <DropdownItem leftIcon={<span id="solar" className="icon-theme"/>} states={[{value: "solar", setFunction: () => {
                           let body = document.getElementById('body');
 
@@ -193,11 +205,13 @@ function DropdownMenu() {
 
                               setText('Solarize');
 
-
+                              localStorage.removeItem('isSolar');
                           } else {
                               body.classList.add('solar');
 
-                              setText('Normalize')
+                              setText('Normalize');
+
+                              localStorage.setItem('isSolar', true);
                           }
                           return true;
                   }
