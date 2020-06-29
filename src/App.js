@@ -16,6 +16,7 @@ import { ReactComponent as KiwiBirdIcon } from './icons/kiwi-bird.svg';
 import { ReactComponent as OtterIcon } from './icons/otter.svg';
 import { ReactComponent as PawIcon } from './icons/paw.svg';
 import { ReactComponent as SpiderIcon } from './icons/spider.svg';
+import { ReactComponent as PaletteIcon } from './icons/palette.svg';
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -40,7 +41,7 @@ function App() {
 
 function Body(props) {
     return (
-        <div className="light"> {props.children} </div>
+        <div id="body" className="dark"> {props.children} </div>
     );
 
 }
@@ -72,7 +73,9 @@ function DropdownMenu() {
 
     const [activeMenu, setActiveMenu] = useState('main');
     const [menuHeight, setMenuHeight] = useState(null);
-    const [currentClassName, setClassName] = useState('menu-secondary');
+    const [activeClassName, setClassName] = useState('menu-secondary');
+    const [activeText, setText] = useState('Solarize');
+
     const dropdownRef = useRef(null);
 
     useEffect(() => {
@@ -84,17 +87,9 @@ function DropdownMenu() {
         setMenuHeight(height);
     }
 
-    function changeClassName(name) {
-        if (name !== undefined) {
-            setClassName(name);
-            return true;
-        }
-        return false;
-    }
-
-    function goToMenu(name) {
-        if (name !== undefined) {
-            setActiveMenu(name);
+    function updateState(value, setFunction) {
+        if (value !== undefined) {
+            setFunction(value);
             return true;
         }
         return false;
@@ -102,7 +97,7 @@ function DropdownMenu() {
 
     function DropdownItem(props) {
         return (
-          <a href="#" className="menu-item" onClick={() => goToMenu(props.goToMenu) && changeClassName(props.changeClassName)}>
+          <a href="#" className="menu-item" onClick={() => props.states && props.states.map(e => updateState(e.value, e.setFunction))}>
               <span className="icon-button">{props.leftIcon}</span>
 
               {props.children}
@@ -122,13 +117,13 @@ function DropdownMenu() {
                   <DropdownItem
                       leftIcon={<CogIcon />}
                       rightIcon={<ChevronIcon />}
-                      goToMenu="settings" >
+                      states={[{value: "settings", setFunction: setActiveMenu}]} >
                       <h3>Settings</h3>
                   </DropdownItem>
                   <DropdownItem
                       leftIcon={<PawIcon />}
                       rightIcon={<ChevronIcon />}
-                      goToMenu="animals">
+                      states={[{value: "animals", setFunction: setActiveMenu}]}>
                       <h3>Animals</h3>
                   </DropdownItem>
               </div>
@@ -138,14 +133,14 @@ function DropdownMenu() {
           <TransitionGroup
               childFactory={child => React.cloneElement(
                   child,
-                  {in:activeMenu === 'settings', unmountOnExit: true, timeout: 500, classNames: currentClassName, onEnter: calcHeight}
+                  {in:activeMenu === 'settings', unmountOnExit: true, timeout: 500, classNames: activeClassName, onEnter: calcHeight}
               )}
           >
               <CSSTransition timeout={500}>
 
                   <div className="menu">
-                      <DropdownItem leftIcon={<ArrowIcon/>} goToMenu="main" changeClassName="menu-secondary"/>
-                          <DropdownItem leftIcon={<BoltIcon />} goToMenu="themes" changeClassName='menu-primary'><h3>Theme</h3></DropdownItem>
+                      <DropdownItem leftIcon={<ArrowIcon/>} states={[{value: "main", setFunction: setActiveMenu}, {value: "menu-secondary", setFunction: setClassName}]}/>
+                          <DropdownItem leftIcon={<PaletteIcon />} states={[{value: "themes", setFunction: setActiveMenu}, {value: "menu-primary", setFunction: setClassName}]}><h3>Theme</h3></DropdownItem>
                       <hr/>
                       <DropdownItem leftIcon={<BoltIcon />}><h3>Settings</h3></DropdownItem>
                       <DropdownItem leftIcon={<BoltIcon />}><h3>Settings</h3></DropdownItem>
@@ -166,7 +161,7 @@ function DropdownMenu() {
               unmountOnExit
               onEnter={calcHeight}>
               <div className="menu">
-                  <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
+                  <DropdownItem states={[{value: "main", setFunction: setActiveMenu}]} leftIcon={<ArrowIcon />}>
                       <h1>Animals</h1>
                   </DropdownItem>
                   <DropdownItem leftIcon={<CatIcon />}><h3>Cat</h3></DropdownItem>
@@ -187,10 +182,26 @@ function DropdownMenu() {
               unmountOnExit
               onEnter={calcHeight}>
               <div className="menu">
-                  <DropdownItem goToMenu="settings" leftIcon={<ArrowIcon />}/>
-                  <DropdownItem><h3>Light</h3></DropdownItem>
-                  <DropdownItem><h3>Dark</h3></DropdownItem>
-                  <DropdownItem><h3>Saturated</h3></DropdownItem>
+                  <DropdownItem states={[{value: "settings", setFunction: setActiveMenu}]} leftIcon={<ArrowIcon />}/>
+                  <DropdownItem leftIcon={<span id="light" className="icon-theme"/>} states={[{value: "light", setFunction: (value) => document.getElementById('body').classList.replace('dark', value)}]}><h3>Light</h3></DropdownItem>
+                  <DropdownItem leftIcon={<span id="dark" className="icon-theme"/>} states={[{value: "dark", setFunction: (value) => document.getElementById('body').classList.replace('light', value)}]}><h3>Dark</h3></DropdownItem>
+                  <DropdownItem leftIcon={<span id="solar" className="icon-theme"/>} states={[{value: "solar", setFunction: () => {
+                          let body = document.getElementById('body');
+
+                          if (body.classList.contains('solar')) {
+                              body.classList.remove('solar');
+
+                              setText('Solarize');
+
+
+                          } else {
+                              body.classList.add('solar');
+
+                              setText('Normalize')
+                          }
+                          return true;
+                  }
+                  }]}><h3>{activeText}</h3></DropdownItem>
               </div>
           </CSSTransition>
       </div>

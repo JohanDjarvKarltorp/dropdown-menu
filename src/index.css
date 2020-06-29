@@ -20,8 +20,57 @@ code {
   --border: 1px solid #474a4d;
   --border-radius: 8px;
   --speed: 300ms;
+  --gray0: #f8f8f8;
+  --gray1: #dbe1e8;
+  --gray2: #b2becd;
+  --gray3: #6c7983;
+  --gray4: #454e56;
+  --gray5: #2a2e35;
+  --gray6: #12181b;
+  --blue: #0084a5;
+  --purple: #a82dd1;
+  --yellow: #fff565;
+  --bg-solar: var(--yellow);
 
 }
+
+.light {
+  --bg: var(--gray0);
+  --bg-accent: var(--gray2);
+  --bg-nav: linear-gradient(to bottom, var(--gray0), var(--gray3));
+  --bg-dropdown: var(--gray0);
+  --text-color: var(--gray6);
+  --border-color: var(--blue);
+  --bg-solar: var(--yellow);
+}
+
+.dark {
+  --bg: var(--gray5);
+  --bg-accent: var(--gray4);
+  --bg-nav: linear-gradient(to bottom, var(--gray5), var(--gray6));
+  --bg-dropdown: var(--gray6);
+  --text-color: var(--gray0);
+  --border-color: var(--purple);
+  --bg-solar: var(--blue);
+}
+
+.solar {
+  --gray0: #fbffd4;
+  --gray1: #f7f8d0;
+  --gray2: #b6f880;
+  --gray3: #5ec72d;
+  --gray4: #3ea568;
+  --gray5: #005368;
+  --gray6: #003d4c;
+}
+
+#body {
+  height: 100vh;
+  color: var(--text-color);
+  background: var(--bg);
+  transition: background 500ms ease-in-out, color 1000ms ease-in-out;
+}
+
 
 ul {
   list-style: none;
@@ -36,9 +85,8 @@ a {
 
 .navbar {
   height: var(--nav-size);
-  background-color: var(--bg);
+  background-color: var(--bg-nav);
   padding: 0 1rem;
-  border-bottom: var(--border);
 }
 
 .navbar-nav {
@@ -46,6 +94,19 @@ a {
   height: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+header {
+  background: var(--bg-nav);
+  margin-bottom: 1em;
+  padding: 1em 1em 3.5em;
+  text-align: center;
+  clip-path: polygon(50% 0, 100% 0, 100% 65%, 50% 100%, 0 65%, 0 0);
+}
+
+header svg {
+  height: auto;
+  width: 10%;
 }
 
 .nav-item {
@@ -116,6 +177,25 @@ a {
   margin-left: auto;
 }
 
+.icon-theme {
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
+
+#dark {
+  background: #2a2e35;
+}
+
+#light {
+  background: #ffffff;
+}
+
+#solar {
+  background: var(--bg-solar);
+}
+
 .menu {
   width: 100%;
 }
@@ -161,17 +241,4 @@ a {
 .menu-secondary-exit-active {
   transform: translateX(110%);
   transition: all var(--speed) ease;
-}
-
-header {
-  background: red;
-  margin-bottom: 1em;
-  padding: 1em 1em 3.5em;
-  text-align: center;
-  clip-path: polygon(50% 0, 100% 0, 100% 65%, 50% 100%, 0 65%, 0 0);
-}
-
-header svg {
-  height: auto;
-  width: 10%;
 }
