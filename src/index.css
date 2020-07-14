@@ -83,6 +83,12 @@ a {
   text-decoration: none;
 }
 
+h2,p {
+  margin-left: 5rem;
+  margin-right: 5rem;
+
+}
+
 .navbar {
   height: var(--nav-size);
   background-color: var(--bg-nav);
@@ -241,4 +247,21 @@ header svg {
 .menu-secondary-exit-active {
   transform: translateX(110%);
   transition: all var(--speed) ease;
+}
+
+
+@keyframes color-rotate {
+  from {
+    filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(0deg) brightness(119%) contrast(119%);
+  }
+  to {
+    filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(360deg) brightness(119%) contrast(119%);
+  }
+}
+
+
+.logo svg:hover {
+  animation: color-rotate 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
